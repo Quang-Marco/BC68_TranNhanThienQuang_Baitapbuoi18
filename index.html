@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bài tập mảng</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- GG Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      href="https://static-00.iconduck.com/assets.00/array-icon-512x512-slztyf8v.png"
+      type="image/x-icon"
+    />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <!-- FontAwesome 6.2.0 CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Style CSS -->
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: "Oswald", sans-serif;
+      }
+
+      body {
+        background: url(https://gcs.tripi.vn/public-tripi/tripi-feed/img/474098koW/background-nen-xam-dep_101024709.jpg)
+          fixed center / cover;
+        min-height: 100vh;
+      }
+
+      body::-webkit-scrollbar {
+        display: none;
+      }
+
+      .container {
+        background: url(https://khoinguonsangtao.vn/wp-content/uploads/2021/09/background-trang-xanh.jpg)
+          center / cover;
+        min-height: 650px;
+        padding: 80px 100px;
+      }
+
+      .container h2 {
+        font-family: "Pacifico", cursive;
+        color: rgb(29, 29, 214);
+      }
+
+      .tab-pane {
+        min-width: 740px;
+        margin-left: 30px;
+      }
+
+      .nav-link {
+        background-color: rgb(233, 236, 239);
+        width: 330px;
+        margin-bottom: 10px;
+        padding: 15px;
+        font-size: 20px;
+        text-align: left;
+      }
+
+      .d-inline-block {
+        color: rgb(29, 29, 214);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <form action="" id="formSoN" class="col-5">
+          <input
+            type="number"
+            class="form-control form-control-lg"
+            name=""
+            id="nhapSoN"
+            aria-describedby="helpId"
+            placeholder="Nhập số N"
+          />
+        </form>
+        <button id="btnThemSo" class="col-2 btn btn-lg btn-primary mx-4">
+          Thêm số
+        </button>
+        <button id="btnResetInput" class="col-2 btn btn-lg btn-danger me-4">
+          Reset Input
+        </button>
+        <button id="btnResetArray" class="col-2 btn btn-lg btn-warning">
+          Reset Array
+        </button>
+      </div>
+      <div class="bg-body-tertiary rounded p-3 my-4">
+        👉
+        <p id="themSoN" class="d-inline-block mb-0"></p>
+      </div>
+      <div class="d-flex align-items-start pt-5">
+        <div
+          class="nav flex-column nav-pills me-3"
+          id="v-pills-tab"
+          role="tablist"
+          aria-orientation="vertical"
+        >
+          <button
+            class="nav-link active"
+            id="v-pills-home-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#v-pills-home"
+            type="button"
+            role="tab"
+            aria-controls="v-pills-home"
+            aria-selected="true"
+          >
+            1️⃣Tổng số dương <span>📖</span>
+          </button>
+          <button
+            class="nav-link"
+            id="v-pills-profile-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#v-pills-profile"
+            type="button"
+            role="tab"
+            aria-controls="v-pills-profile"
+            aria-selected="false"
+          >
+            2️⃣Đếm số dương <span>📒</span>
+          </button>
+          <button
+            class="nav-link"
+            id="v-pills-disabled-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#v-pills-disabled"
+            type="button"
+            role="tab"
+            aria-controls="v-pills-disabled"
+            aria-selected="false"
+          >
+            3️⃣Tìm số nhỏ nhất <span>📒</span>
+          </button>
+          <button
+            class="nav-link"
+            id="v-pills-messages-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#v-pills-messages"
+            type="button"
+            role="tab"
+            aria-controls="v-pills-messages"
+            aria-selected="false"
+          >
+            4️⃣Tìm số dương nhỏ nhất <span>📒</span>
+          </button>
+          <button
+            class="nav-link"
+            id="v-pills-settings-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#v-pills-settings"
+            type="button"
+            role="tab"
+            aria-controls="v-pills-settings"
+            aria-selected="false"
+          >
+            5️⃣Tìm số chẵn cuối cùng <span>📒</span>
+          </button>
+          <button
+            class="nav-link"
+            id="pills-contact-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#pills-contact"
+            type="button"
+            role="tab"
+            aria-controls="pills-contact"
+            aria-selected="false"
+          >
+            6️⃣Đổi chỗ <span>📒</span>
+          </button>
+          <button
+            class="nav-link"
+            id="pills-ascending-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#pills-ascending"
+            type="button"
+            role="tab"
+            aria-controls="pills-ascending"
+            aria-selected="false"
+          >
+            7️⃣Sắp xếp tăng dần <span>📒</span>
+          </button>
+          <button
+            class="nav-link"
+            id="pills-primenumber-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#pills-primenumber"
+            type="button"
+            role="tab"
+            aria-controls="pills-primenumber"
+            aria-selected="false"
+          >
+            8️⃣Tìm số nguyên tố đầu tiên <span>📒</span>
+          </button>
+          <button
+            class="nav-link"
+            id="pills-interger-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#pills-interger"
+            type="button"
+            role="tab"
+            aria-controls="pills-interger"
+            aria-selected="false"
+          >
+            9️⃣Đếm số nguyên <span>📒</span>
+          </button>
+          <button
+            class="nav-link"
+            id="pills-compare-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#pills-compare"
+            type="button"
+            role="tab"
+            aria-controls="pills-compare"
+            aria-selected="false"
+          >
+            🔟So sánh số lượng số âm và dương <span>📒</span>
+          </button>
+        </div>
+        <div class="tab-content rounded-4" id="v-pills-tabContent">
+          <!-- Tổng số dương -->
+
+          <div
+            class="tab-pane fade show active"
+            id="v-pills-home"
+            role="tabpanel"
+            aria-labelledby="v-pills-home-tab"
+            tabindex="0"
+          >
+            <h2 class="mb-5">🕐 Tổng các số dương trong mảng</h2>
+            <button id="btnTinhTong" class="btn btn-primary btn-lg">
+              Tính tổng
+            </button>
+            <div class="bg-body-tertiary rounded p-3 mt-4">
+              👉
+              <p id="tinhTong" class="d-inline-block mb-0"></p>
+            </div>
+          </div>
+
+          <!-- Đếm số dương -->
+
+          <div
+            class="tab-pane fade"
+            id="v-pills-profile"
+            role="tabpanel"
+            aria-labelledby="v-pills-profile-tab"
+            tabindex="0"
+          >
+            <h2 class="mb-5">🕑 Đếm có bao nhiêu số dương trong mảng</h2>
+            <button id="btnDemSo" class="btn btn-primary btn-lg">
+              Đếm số dương
+            </button>
+            <div class="bg-body-tertiary rounded p-3 mt-4">
+              👉
+              <p id="demSo" class="d-inline-block mb-0"></p>
+            </div>
+          </div>
+
+          <!-- Tìm số nhỏ nhất -->
+
+          <div
+            class="tab-pane fade"
+            id="v-pills-disabled"
+            role="tabpanel"
+            aria-labelledby="v-pills-disabled-tab"
+            tabindex="0"
+          >
+            <h2 class="mb-5">🕒 Tìm số nhỏ nhất trong mảng</h2>
+            <button id="btnTimSoNhoNhat" class="btn btn-primary btn-lg">
+              Tìm số nhỏ nhất
+            </button>
+            <div class="bg-body-tertiary rounded p-3 mt-4">
+              👉
+              <p id="timSoNhoNhat" class="d-inline-block mb-0"></p>
+            </div>
+          </div>
+
+          <!-- Tìm số dương nhỏ nhất -->
+
+          <div
+            class="tab-pane fade"
+            id="v-pills-messages"
+            role="tabpanel"
+            aria-labelledby="v-pills-messages-tab"
+            tabindex="0"
+          >
+            <h2 class="mb-5">🕓 Tìm số dương nhỏ nhất trong mảng</h2>
+            <button id="btnTimSoDuongNhoNhat" class="btn btn-primary btn-lg">
+              Tìm số dương nhỏ nhất
+            </button>
+            <div class="bg-body-tertiary rounded p-3 mt-4">
+              👉
+              <p id="timSoDuongNhoNhat" class="d-inline-block mb-0"></p>
+            </div>
+          </div>
+
+          <!-- Tìm số chẵn cuối cùng -->
+
+          <div
+            class="tab-pane fade"
+            id="v-pills-settings"
+            role="tabpanel"
+            aria-labelledby="v-pills-settings-tab"
+            tabindex="0"
+          >
+            <h2 class="mb-5">🕔 Tìm số chẵn cuối cùng trong mảng</h2>
+            <button id="btnTimSoChanCuoiCung" class="btn btn-primary btn-lg">
+              Tìm số chẵn cuối cùng
+            </button>
+            <div class="bg-body-tertiary rounded p-3 mt-4">
+              👉
+              <p id="timSoChanCuoiCung" class="d-inline-block mb-0"></p>
+            </div>
+          </div>
+
+          <!--  Đổi chỗ -->
+
+          <div
+            class="tab-pane fade"
+            id="pills-contact"
+            role="tabpanel"
+            aria-labelledby="pills-contact-tab"
+            tabindex="0"
+          >
+            <h2 class="mb-5">🕕 Đổi chỗ 2 giá trị trong mảng theo vị trí</h2>
+            <div class="row">
+              <div class="col-6 mb-3">
+                <input
+                  type="number"
+                  class="form-control form-control-lg"
+                  name=""
+                  id="index1"
+                  aria-describedby="helpId"
+                  placeholder="Nhập vị trí số 1"
+                />
+              </div>
+              <div class="col-6 mb-3">
+                <input
+                  type="number"
+                  class="form-control form-control-lg"
+                  name=""
+                  id="index2"
+                  aria-describedby="helpId"
+                  placeholder="Nhập vị trí số 2"
+                />
+              </div>
+            </div>
+            <button id="btnDoiCho" class="btn btn-primary btn-lg">
+              Đổi chỗ
+            </button>
+            <div class="bg-body-tertiary rounded p-3 mt-4">
+              👉
+              <p id="doiCho" class="d-inline-block mb-0"></p>
+            </div>
+          </div>
+
+          <!-- Sắp xếp tăng dần -->
+
+          <div
+            class="tab-pane fade"
+            id="pills-ascending"
+            role="tabpanel"
+            aria-labelledby="pills-ascending-tab"
+            tabindex="0"
+          >
+            <h2 class="mb-5">🕖 Sắp xếp mảng theo thứ tự tăng dần</h2>
+            <button id="btnSapXep" class="btn btn-primary btn-lg">
+              Sắp xếp
+            </button>
+            <div class="bg-body-tertiary rounded p-3 mt-4">
+              👉
+              <p id="sapXep" class="d-inline-block mb-0"></p>
+            </div>
+          </div>
+
+          <!-- Tìm số nguyên tố đầu tiên -->
+
+          <div
+            class="tab-pane fade"
+            id="pills-primenumber"
+            role="tabpanel"
+            aria-labelledby="pills-primenumber-tab"
+            tabindex="0"
+          >
+            <h2 class="mb-5">🕗 Tìm số nguyên tố đầu tiên trong mảng</h2>
+            <button id="btnTimSoNguyenTo" class="btn btn-primary btn-lg">
+              Tìm số nguyên tố
+            </button>
+            <div class="bg-body-tertiary rounded p-3 mt-4">
+              👉
+              <p id="timSoNguyenTo" class="d-inline-block mb-0"></p>
+            </div>
+          </div>
+
+          <!-- Đếm số nguyên -->
+
+          <div
+            class="tab-pane fade"
+            id="pills-interger"
+            role="tabpanel"
+            aria-labelledby="pills-interger-tab"
+            tabindex="0"
+          >
+            <h2 class="mb-5">🕘 Đếm số nguyên trong mảng</h2>
+            <button id="btnDemSoNguyen" class="btn btn-primary btn-lg">
+              Đếm số nguyên
+            </button>
+            <div class="bg-body-tertiary rounded p-3 mt-4">
+              👉
+              <p id="demSoNguyen" class="d-inline-block mb-0"></p>
+            </div>
+          </div>
+
+          <!-- So sánh số lượng số dương và số lượng số âm -->
+
+          <div
+            class="tab-pane fade"
+            id="pills-compare"
+            role="tabpanel"
+            aria-labelledby="pills-compare-tab"
+            tabindex="0"
+          >
+            <h2 class="mb-5 lh-lg">
+              🕙 So sánh số lượng số dương và số lượng số âm (Số 0 không phải số
+              dương cũng không phải số âm)
+            </h2>
+            <button id="btnSoSanh" class="btn btn-primary btn-lg">
+              So sánh
+            </button>
+            <div class="bg-body-tertiary rounded p-3 mt-4">
+              👉
+              <p id="soSanh" class="d-inline-block mb-0"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Index JS -->
+    <script src="index.js"></script>
+  </body>
+</html>
